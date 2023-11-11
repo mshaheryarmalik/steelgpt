@@ -29,7 +29,9 @@ def get_link_content(link: str, recursive: int = 0) -> List[str]:
         link_text = fetch_link(link)
         if link_text:
             soup = BeautifulSoup(link_text, "html.parser")
-            results.append({"source": link, "text": " ".join(soup.get_text().split())})
+            results.append(
+                {"source": link, "content": " ".join(soup.get_text().split())}
+            )
             if recursive:
                 result_links = soup.select(".tF2Cxc")
                 print(result_links)
@@ -42,3 +44,20 @@ def get_link_content(link: str, recursive: int = 0) -> List[str]:
         print(f"Error processing URL: {link}")
         print(f"Error details: {e}")
     return []
+
+
+def scrape_query(query):
+    links = get_google_links(query)
+    results = list()
+    for link in links:
+        contents = get_link_content(link)
+        for content in contents:
+            title = content["content"][:50] if len(content["content"]) > 0 else ""
+            entry = {
+                "title": title,
+                "query": query,
+                "url": link,
+                "content": [content["content"]],
+            }
+            results.append(entry)
+    return results
