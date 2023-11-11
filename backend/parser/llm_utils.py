@@ -3,7 +3,7 @@ from .ollama_endpoint import (
     prompt_ollama_chat,
 )
 
-BACKEND = "mock"  # "ollama"
+BACKEND =  "ollama"
 
 
 def get_mock_response(prompt):
@@ -43,7 +43,7 @@ def get_llm_response(chat_history):
 def call_model_single(prompt):
     model_call_function = get_mock_response
     if BACKEND == "ollama":
-        model_call_function = call_ollama_single
+        model_call_function = prompt_ollama_single
     response = ""
     if model_call_function:
         response = model_call_function(prompt)
@@ -53,7 +53,7 @@ def call_model_single(prompt):
 def call_model_chat(chat_history):
     model_call_function = get_mock_response
     if BACKEND == "ollama":
-        model_call_function = call_ollama_chat
+        model_call_function = prompt_ollama_chat
     response = ""
     if model_call_function:
         response = model_call_function(chat_history)

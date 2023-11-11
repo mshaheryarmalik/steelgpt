@@ -47,9 +47,15 @@ def process_query(chat_history):
     # If it's the first one
     if len(chat_history) == 1:
         # Prepend the system prompt
-        chat_history.insert(0, get_system_prompt())
+        system_prompt = dict()
+        system_prompt["role"] = "system"
+        system_prompt["message"] = get_system_prompt()
+        chat_history.insert(0, system_prompt)
         # Append the context
-        chat_history.insert(-1, compile_context(content))
+        context = dict()
+        context["role"] = "system"
+        context["message"] = compile_context(content)
+        chat_history.insert(-1, context)
     # Send the chat to the language model
     response = get_llm_response(chat_history)
     # Append the response to chat history

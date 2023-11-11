@@ -53,7 +53,10 @@ def get_best_snippet(content, query, original_query):
     logging.info("Vectorizing snippets")
     vectorizer = TfidfVectorizer()
     print(snippets)
-    X = vectorizer.fit_transform(snippets)
+    try:
+        X = vectorizer.fit_transform(snippets)
+    except ValueError:
+        return ""
     # Rank the snippets based on the queries
     logging.info("Calculating similarities")
     queries = [original_query, query]

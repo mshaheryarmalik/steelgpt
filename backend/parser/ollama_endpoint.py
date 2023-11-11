@@ -1,6 +1,8 @@
 import json
 import requests
 
+from langchain.llms import Ollama
+
 MODEL = "mistral"
 PORT = 11434
 
@@ -15,14 +17,9 @@ def prompt_ollama_chat(chat_history):
 
 
 def prompt_ollama(prompt):
-    data = dict()
-    data["model"] = MODEL
-    data["prompt"] = prompt
-    data["format"] = "json"
-    data["stream"] = "false"
-    model_endpoint = f"http://localhost:{PORT}/api/generate"
-    http_response = requests.post(model_endpoint, json=json.dumps(data))
+    ollama = Ollama(base_url=f"http://localhost:{PORT}", model=MODEL)
+    message = ollama(prompt)
     response = dict()
     response["role"] = "assistant"
-    response["message"] = response["response"]
+    response["message"] = message
     return response
