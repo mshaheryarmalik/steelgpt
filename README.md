@@ -25,3 +25,9 @@ As to the actual solution, we will encounter different types of questions, and i
 For practicality, we expect the assistant to be able to connect to the internet, fetch relevant data and be able to produce well summarized results in human readable format in the range of one or two paragraphs per question – with a special focus on avoiding hallucinations and basing the results on the source information and being ecological and efficient in how this is done. The results should always include a reference to the sources of the information used to construct the answer.
 
 The architecture should be such that the actual model component is easily interchangeable (as this is a rapidly developing field), and working from the assumption that you do not need to fine-tune or retrain the actual model, but supply the data through prompting in a way that you find most effective. And in order to evaluate your ecological consumption, we would like you to also estimate the energy impact of the query having been executed (understanding that this is just an estimate, and using the number and size of queries and size of the model used as proxy is a good approach – although we welcome you to innovate also in this front)
+
+### Demo Video
+[Let's Go!] (https://youtu.be/h27J-zgJ9Xs)
+
+### Figma Design
+[Let's Design!] (https://www.figma.com/proto/xo5YqnjV7MBPn3ZqjvXzeg/SteelGPT?page-id=0%3A1&type=design&node-id=2-2&viewport=353%2C418%2C0.06&t=bdG7tEfHzgauKbG2-1&scaling=scale-down&starting-point-node-id=38%3A3681&mode=design)
